@@ -1,5 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
+import speaker from "./icons/speaker.svg";
+import music from "./icons/music-player.svg";
+import microphone from "./icons/microphone.svg";
 import "./App.css";
 import SpotifyWebApi from "spotify-web-api-js";
 
@@ -16,9 +18,10 @@ class App extends React.Component {
     this.state = {
       loggedIn: token ? true : false,
       nowPlaying: {
-        name: "Not Checked",
+        name: "",
         albumArt: "",
-        artist: "",
+        artists: "",
+        album: "",
       },
     };
   }
@@ -39,6 +42,8 @@ class App extends React.Component {
         nowPlaying: {
           name: response.item.name,
           albumArt: response.item.album.images[0].url,
+          artists: response.item.artists[0].name,
+          album: response.item.album.name,
         },
       });
     });
@@ -46,16 +51,76 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <a href="http://localhost:8888">Login to Spotify</a>
-        <div>Now Playing: {this.state.nowPlaying.name}</div>
-        <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
-        </div>
+        {!this.state.loggedIn && (
+          <div>
+            <h1>
+              Welcome to <b>"What Am I Listening To?"</b>
+            </h1>
+            <h3>To Start, Please Login to Your Spotify Account Below!</h3>
+            <a href="http://localhost:8888">
+              <button>Login to Spotify</button>
+            </a>
+          </div>
+        )}
+        {this.state.loggedIn && (
+          <div>
+            <h1>What Am I Listening to?</h1>
+            <h2>Now Playing:</h2>
+            <img src={this.state.nowPlaying.albumArt} />
+            <br /> <br />
+            <img className="icons" src={speaker} />{" "}
+            <h3>{this.state.nowPlaying.name}</h3>
+            <img className="icons" src={microphone} />{" "}
+            <h3> {this.state.nowPlaying.artists}</h3>
+            <img className="icons" src={music} />{" "}
+            <h3> {this.state.nowPlaying.album}</h3>
+          </div>
+        )}
         {this.state.loggedIn && (
           <button onClick={() => this.getNowPlaying()}>
             Check Now Playing
           </button>
         )}
+        <footer className="bottom">
+          <div className="footer-container">
+            <div className="copyright">
+              <p>
+                © 2020
+                <a>
+                  <b> Forrest Darabian </b>
+                </a>
+                All Rights Reserved.
+              </p>
+            </div>
+            Icons made by{" "}
+            <a
+              href="https://www.flaticon.com/authors/dinosoftlabs"
+              title="DinosoftLabs"
+            >
+              DinosoftLabs
+            </a>{" "}
+            from{" "}
+            <a href="https://www.flaticon.com/" title="Flaticon">
+              {" "}
+              www.flaticon.com
+            </a>
+            <div className="left">
+              Contact / Links
+              <li>
+                {" "}
+                <a href="mailto:forrestdarabian@gmail.com">
+                  <i className="ion-ios-email fa-icons"></i>
+                  Contact Me
+                </a>{" "}
+              </li>
+              <li>
+                <a href="https://www.forrestdarabian.com/">
+                  <i className="fa-angle-double-right"></i>Developers Site
+                </a>
+              </li>
+            </div>
+          </div>
+        </footer>{" "}
       </div>
     );
   }

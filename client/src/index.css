@@ -1,13 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right, #ffac00, #8adfe8);
+}
+
+* {
+  font-family: "Nunito Sans", sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  background-color: #88df40;
+  color: white;
+  margin-left: 45%;
+  margin-right: 45%;
+  border-radius: 10px;
+  padding: 10px;
+  border-style: ridge;
+  border-color: #8adfe8;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  background-color: #f5f670;
+  color: #d4b3eb;
+  margin-left: 35%;
+  margin-right: 35%;
+  border-radius: 10px;
+  padding: 10px;
+  border-style: ridge;
+  border-color: #8adfe8;
+}
+
+img {
+  height: 250px;
+  background-color: #f5f670;
+  color: #d4b3eb;
+  margin-left: 35%;
+  margin-right: 35%;
+  border-radius: 10px;
+  padding: 10px;
+  border-style: ridge;
+  border-color: #8adfe8;
+}
+
+@media (min-width: 1051px) {
+  img {
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 500px;
+  }
+}
+
+@media (max-width: 1050px) {
+  img {
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 200px;
+  }
+}
+
+@media (max-width: 531) {
+  img {
+    height: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  img {
+    margin-left: 7%;
+    margin-right: 7%;
+    width: 75%;
+    height: 75%;
+  }
+}
+
+@media (max-width: 352px) {
+  img {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 807px) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+@media (max-width: 450px) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 352px) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+footer {
+  color: white;
+}
+
+.icons {
+  width: 50px;
+  height: 50px;
+}
+
+@media (max-width: 450px) {
+  .icons {
+    display: none;
+  }
 }
