@@ -2,6 +2,9 @@ import React from "react";
 import speaker from "./icons/speaker.svg";
 import music from "./icons/music-player.svg";
 import microphone from "./icons/microphone.svg";
+import audio from "./icons/audio-file.svg";
+import arrow from "./icons/giphy.gif";
+
 import "./App.css";
 import SpotifyWebApi from "spotify-web-api-js";
 
@@ -36,6 +39,14 @@ class App extends React.Component {
     return hashParams;
   }
 
+  scrolling() {
+    let progress = document.getElementById("progressbar");
+    let totalHeight = document.body.scrollHeight - window.innerHeight;
+    window.onscroll = function () {
+      let progressHeight = (window.pageYOffset / totalHeight) * 100;
+      progress.style.height = progressHeight + "%";
+    };
+  }
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState().then((response) => {
       this.setState({
@@ -53,10 +64,23 @@ class App extends React.Component {
       <div className="App">
         {!this.state.loggedIn && (
           <div>
+            {this.scrolling()}
+            <div id="progressbar"></div>
+            <div id="scrollPath"></div>
             <h1>
               Welcome to <b>"What Am I Listening To?"</b>
             </h1>
+            <img className="icons" src={audio} />
+            <h3>
+              This App tracks the songs you're listening to on Spotify in
+              real-time! Sure that may seem a little redundant considering
+              Spotify already shows you what you're listening to...However, this
+              website makes great use of Spotify's API and is a brilliant
+              example of what you can create if you are interested in Web
+              Development! Enjoy!
+            </h3>
             <h3>To Start, Please Login to Your Spotify Account Below!</h3>
+            <img className="arrow" src={arrow} />
             <a href="http://localhost:8888">
               <button>Login to Spotify</button>
             </a>
@@ -64,8 +88,10 @@ class App extends React.Component {
         )}
         {this.state.loggedIn && (
           <div>
-            <h1>What Am I Listening to?</h1>
-            <h2>Now Playing:</h2>
+            {this.scrolling()}
+            <h1>
+              What Am I Listening to? <br /> Now Playing:{" "}
+            </h1>
             <img src={this.state.nowPlaying.albumArt} />
             <br /> <br />
             <img className="icons" src={speaker} />{" "}
@@ -77,10 +103,16 @@ class App extends React.Component {
           </div>
         )}
         {this.state.loggedIn && (
-          <button onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
+          <div>
+            <img className="arrow" src={arrow} />
+
+            <button onClick={() => this.getNowPlaying()}>
+              Check Now Playing
+            </button>
+          </div>
         )}
+        <div id="progressbar"></div>
+        <div id="scrollPath"></div>
         <footer className="bottom">
           <div className="footer-container">
             <div className="copyright">
