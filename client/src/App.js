@@ -47,6 +47,22 @@ class App extends React.Component {
       progress.style.height = progressHeight + "%";
     };
   }
+  clicking() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        let x = e.clientX - e.target.offsetLeft;
+        let y = e.clientY - e.target.offsetTop;
+        let ripples = document.createElement("span");
+        ripples.style.left = x + "px";
+        ripples.style.top = y + "px";
+        this.appendChild(ripples);
+        setTimeout(() => {
+          ripples.remove();
+        }, 1000);
+      });
+    });
+  }
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState().then((response) => {
       this.setState({
@@ -82,7 +98,7 @@ class App extends React.Component {
             <h3>To Start, Please Login to Your Spotify Account Below!</h3>
             <img className="arrow" src={arrow} />
             <a href="http://localhost:8888">
-              <button>Login to Spotify</button>
+              <button onClick={() => this.clicking()}>Login to Spotify</button>
             </a>
           </div>
         )}
@@ -105,7 +121,6 @@ class App extends React.Component {
         {this.state.loggedIn && (
           <div>
             <img className="arrow" src={arrow} />
-
             <button onClick={() => this.getNowPlaying()}>
               Check Now Playing
             </button>

@@ -16,7 +16,7 @@ code {
 }
 
 button {
-  background-color: #1db954;
+  background: #1db954;
   color: white;
   margin-left: 45%;
   margin-right: 45%;
@@ -25,6 +25,9 @@ button {
   border-style: ridge;
   border-color: #11582a;
   margin-right: 40px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
 }
 
 h1,
@@ -43,6 +46,26 @@ h6 {
   border-color: #11582a;
 }
 
+span {
+  position: absolute;
+  background: white;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: clicking 0.5s linear infinite;
+}
+@keyframes clicking {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
 img {
   height: 250px;
   background-color: #1db954;
